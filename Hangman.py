@@ -103,7 +103,7 @@ def hangmanPicture():
     return pictures
 
 def generateWord():
-    f = open("sowpods.txt", "r")
+    f = open("d:/code/hangman/sowpods.txt", "r")
     lines = f.readlines()
     return random.choice(lines)
     # userWord = input("What word do you want to make other player guess? ")
