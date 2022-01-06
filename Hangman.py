@@ -1,5 +1,7 @@
 import random
 
+gameVersion = input("Do you want to play with another player or do you want to generate the word? ")
+
 def hangmanPicture():
     pictureAsString6 = """
 
@@ -102,24 +104,31 @@ def hangmanPicture():
     pictures = [pictureAsString6, pictureAsString5, pictureAsString4, pictureAsString3, pictureAsString2, pictureAsString1, pictureAsString0]
     return pictures
 
-def generateWord():
-    f = open("d:/code/hangman/sowpods.txt", "r")
-    lines = f.readlines()
-    return random.choice(lines)
-    # userWord = input("What word do you want to make other player guess? ")
-    # return userWord
+def generateWordWithVersion(gameVersion):
+    if gameVersion == "player":
+        userWord = input("What word do you want to make other player guess? ")
+        userWord.upper()
+        return userWord
+    elif gameVersion == "generate":
+        f = open("d:/code/hangman/sowpods.txt", "r")
+        lines = f.readlines()
+        return random.choice(lines)
+    else:
+        print("Error! You have to type 'player' or 'generate' ")
+        quit()
 
-def guessWord(randomWord, pictures):
+def guessWord(randomWord, pictures, gameVersion):
     print("Welcome to Hangman!")
     wrongTries = 0
     word = list(randomWord)
-    word.pop(-1)
+    if gameVersion == "generate":
+        word.pop(-1)
     guessedWord = '_' * len(word)
     guessedWord = list(guessedWord)
     lettersGuessed = []
 
     while(True):
-        
+         
         triesLeft = 6 - wrongTries
         print(" ".join(guessedWord))
         print(pictures[triesLeft])
@@ -147,7 +156,7 @@ def guessWord(randomWord, pictures):
             break
 
         if wrongTries == 6:
-            print("You have 0 tries left. You lost.")
+            print("You have 0 tries left. You lost.\n The word was:", randomWord)
             print(pictures[0])
             break
 
@@ -162,11 +171,11 @@ def playAgain():
         playAgain()
 
 def main():
-    randomWord = generateWord()
-    print(randomWord) 
+    randomWord = generateWordWithVersion(gameVersion)
+    # print(randomWord) 
     hangmanPicture()
     pictures = hangmanPicture()
-    guessWord(randomWord, pictures)
+    guessWord(randomWord, pictures, gameVersion)
     playAgain()
 
 main()  
