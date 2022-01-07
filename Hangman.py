@@ -107,7 +107,7 @@ def hangmanPicture():
 def generateWordWithVersion(gameVersion):
     if gameVersion == "player":
         userWord = input("What word do you want to make other player guess? ")
-        userWord.upper()
+        userWord = userWord.upper()
         return userWord
     elif gameVersion == "generate":
         f = open("d:/code/hangman/sowpods.txt", "r")
