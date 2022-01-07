@@ -2,7 +2,7 @@ import random
 
 gameVersion = input("Do you want to play with another player or do you want to generate the word? ")
 
-def hangmanPicture():
+def hangman_picture():
     pictureAsString6 = """
 
         ---------
@@ -104,7 +104,7 @@ def hangmanPicture():
     pictures = [pictureAsString6, pictureAsString5, pictureAsString4, pictureAsString3, pictureAsString2, pictureAsString1, pictureAsString0]
     return pictures
 
-def generateWordWithVersion(gameVersion):
+def generate_word_with_version(gameVersion):
     if gameVersion == "player":
         userWord = input("What word do you want to make other player guess? ")
         userWord = userWord.upper()
@@ -117,7 +117,7 @@ def generateWordWithVersion(gameVersion):
         print("Error! You have to type 'player' or 'generate' ")
         quit()
 
-def guessWord(randomWord, pictures, gameVersion):
+def guess_word(randomWord, pictures, gameVersion):
     print("Welcome to Hangman!")
     wrongTries = 0
     word = list(randomWord)
@@ -160,7 +160,7 @@ def guessWord(randomWord, pictures, gameVersion):
             print(pictures[0])
             break
 
-def playAgain():
+def play_again():
     restart = input("Do you want to play again? \n Yes \t No ")
     if restart.lower() == "yes":
         main()
@@ -168,15 +168,15 @@ def playAgain():
         quit()
     else:
         print("Error. Please type in 'Yes' or 'No' ")
-        playAgain()
+        play_again()
 
 def main():
-    randomWord = generateWordWithVersion(gameVersion)
+    randomWord = generate_word_with_version(gameVersion)
     # print(randomWord) 
-    hangmanPicture()
-    pictures = hangmanPicture()
-    guessWord(randomWord, pictures, gameVersion)
-    playAgain()
+    hangman_picture()
+    pictures = hangman_picture()
+    guess_word(randomWord, pictures, gameVersion)
+    play_again()
 
 main()  
 
