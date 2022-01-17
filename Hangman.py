@@ -127,7 +127,7 @@ def guess_word(randomWord, pictures, gameVersion):
     guessedWord = list(guessedWord)
     lettersGuessed = []
 
-    while(True):
+    while True:
          
         triesLeft = 6 - wrongTries
         print(" ".join(guessedWord))
