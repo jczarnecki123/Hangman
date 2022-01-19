@@ -1,6 +1,6 @@
 import random
 
-gameVersion = input("Do you want to play with another player or do you want to generate the word? ")
+gameVersion = input("Do you want to play with another player or do you want to generate the word?\nPlayer\tGenerate  >>")
 
 def hangman_picture():
     pictureAsString6 = """
