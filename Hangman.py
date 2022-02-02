@@ -1,6 +1,6 @@
 import random
 
-gameVersion = input("Do you want to play with another player or do you want to generate the word?\nPlayer\tGenerate  >>")
+game_version = input("Do you want to play with another player or do you want to generate the word?\nPlayer\tGenerate  >>")
 
 def hangman_picture():
     pictureAsString6 = """
@@ -117,45 +117,45 @@ def generate_word_with_version(gameVersion):
         print("Error! You have to type 'player' or 'generate' ")
         quit()
 
-def guess_word(randomWord, pictures, gameVersion):
+def guess_word(randomWord, pictures, game_version):
     print("Welcome to Hangman!")
-    wrongTries = 0
+    wrong_tries = 0
     word = list(randomWord)
-    if gameVersion == "generate":
+    if game_version == "generate":
         word.pop(-1)
-    guessedWord = '_' * len(word)
-    guessedWord = list(guessedWord)
-    lettersGuessed = []
+    guessed_word = '_' * len(word)
+    guessed_word = list(guessed_word)
+    letters_guessed = []
 
     while True:
          
-        triesLeft = 6 - wrongTries
-        print(" ".join(guessedWord))
+        triesLeft = 6 - wrong_tries
+        print(" ".join(guessed_word))
         print(pictures[triesLeft])
         print("You have", triesLeft, "tries left")
         print()
         letter = input("Guess the word by entering a letter: ")
         letter = letter.upper()
         
-        if letter in lettersGuessed:
+        if letter in letters_guessed:
             print("That letter has already been guessed! Try again.")
         elif letter in word:
             while letter in word:
                 index = word.index(letter) 
-                guessedWord[index] = letter
+                guessed_word[index] = letter
                 word[index] = "_"
         else:
             print("Wrong!")
-            wrongTries += 1
+            wrong_tries += 1
 
-        lettersGuessed.append(letter)
+        letters_guessed.append(letter)
 
-        if "_" not in guessedWord:
-            print(" ".join(guessedWord))
+        if "_" not in guessed_word:
+            print(" ".join(guessed_word))
             print("Congratulations! You won.")
             break
 
-        if wrongTries == 6:
+        if wrong_tries == 6:
             print("You have 0 tries left. You lost.\n The word was:", randomWord)
             print(pictures[0])
             break
@@ -171,11 +171,11 @@ def play_again():
         play_again()
 
 def main():
-    randomWord = generate_word_with_version(gameVersion)
-    # print(randomWord) 
+    random_word = generate_word_with_version(game_version)
+    # print(random_word) 
     hangman_picture()
     pictures = hangman_picture()
-    guess_word(randomWord, pictures, gameVersion)
+    guess_word(random_word, pictures, game_version)
     play_again()
 
 main()  
